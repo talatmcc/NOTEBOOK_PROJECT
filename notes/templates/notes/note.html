@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Note
+{% endblock %}
+
+{% block content %}
+    <h1>Note {{note.id}} Details</h1>
+    <p><a href="{% url 'notes:notes' %}">Back to notes</a></p>
+    <p><a href="">Add new note</a></p>
+    <ul>
+        {% for entry in entries %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {% comment %} <a href="{% url 'notes:edit' note.id %}" class='text-decoration-none' >UPDATE ENTRY</a> {% endcomment %}
+            </h4>    
+            <div class="card-body">
+                <p class="card-text">{{ entry|linebreaks }}</p>
+            </div>
+        {% endfor %}
+    </ul>
+{% endblock %}
