@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Note, Entry
+from .forms import NoteForm
 
 # Create your views here.
 
@@ -36,6 +37,21 @@ def note(request, note_id):
     entries = note.entry_set.order_by("date_added")
     context = {"note": note, 'entries': entries}
     return render(request, "notes/note.html", context)
+
+def new_note(request):
+    if request.method != "POST":
+        # No data submitted; create a blank form.
+        form = NoteForm()
+    else:
+        # POST data submitted; process data.
+        form = NoteForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("notes:notes")
+
+    # Display a blank or invalid form.
+    context = {"form": form}
+    return render(request, "notes/new_note.html", context)
 
 # def edit(request, note_id):
 #     for myNote in myNotes:

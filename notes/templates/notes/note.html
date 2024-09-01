@@ -13,10 +13,11 @@
         {% for entry in entries %}
         <div class="card mb-3">
             <h4 class="card-header">
-                {% comment %} <a href="{% url 'notes:edit' note.id %}" class='text-decoration-none' >UPDATE ENTRY</a> {% endcomment %}
+                <a href="" class='text-decoration-none' >UPDATE ENTRY</a>
             </h4>    
             <div class="card-body">
-                <p class="card-text">{{ entry|linebreaks }}</p>
+                <p class="card-text">{{ entry.text|linebreaks }}</p>
+                <P class="card-text">{{entry.id}}</P>
             </div>
         {% endfor %}
     </ul>

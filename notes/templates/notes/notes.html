@@ -5,10 +5,14 @@
 {% endblock %}
 
 {% block content %}
+<div class="m-4 px-3">
     <h1>Notes page</h1>
     {% for note in notes %}
         <ul>
             <h1><li><a href="{% url 'notes:note' note.id %}" class='text-decoration-none' >{{ note.title }}</a></li></h1>
         </ul>
     {% endfor %}
+    <h4><a href="{% url 'notes:new_note' %}" class="btn btn-primary">Add new note</a></h4>
+</div>
+
 {% endblock %}
